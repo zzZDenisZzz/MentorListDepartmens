@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>List Department</title>
@@ -27,6 +27,7 @@
                     <input type="submit" value="Delete">
                 </form>
             </td>
+            <td><a href='<c:url value="/listEmployees?id=${item.id}"/>'>ListEmployees</a></td>
         </tr>
     </c:forEach>
 </table>

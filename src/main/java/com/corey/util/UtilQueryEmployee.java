@@ -13,10 +13,13 @@ public class UtilQueryEmployee {
             "DATEOFCREATE DATE, " +
             "DEPARTMENTID INT NOT NULL, " +
             "PRIMARY KEY (ID))";
-    public static final String INSERT_DEPARTAMENT = "INSERT INTO EMPLOYEE (name) VALUES (?);";
-    public static final String UPDATE_DEPARTAMENT = "UPDATE EMPLOYEE SET name = ? WHERE id = ?;";
-    public static final String DELETE_DEPARTAMENT = "DELETE FROM EMPLOYEE WHERE id = ?;";
-    public static final String SELECT_DEPARTAMENT = "SELECT * FROM EMPLOYEE;";
-    public static final String SELECT_ONE_DEPARTAMENT = "SELECT * FROM EMPLOYEE WHERE id = ?;";
-    public static final String DROP_TABLE_DEPARTAMENT = "DROP TABLE EMPLOYEE;";
+    public static final String INSERT_EMPLOYEE = "INSERT INTO EMPLOYEE " +
+            "(FIRSTNAME, LASTNAME, AGE, EMAIL, DATEOFCREATE, DEPARTMENTID)" +
+            " VALUES (?,?,?,?,?,?);";
+    public static final String UPDATE_EMPLOYEE = "UPDATE EMPLOYEE SET " +
+            "FIRSTNAME = ?, LASTNAME = ?, AGE = ?, EMAIL = ?, DEPARTMENTID = ? WHERE ID = ?;";
+    public static final String DELETE_EMPLOYEE = "DELETE FROM EMPLOYEE WHERE ID = ?;";
+    public static final String SELECT_EMPLOYEE = "SELECT * FROM EMPLOYEE WHERE DEPARTMENTID = ?;";
+    public static final String SELECT_ONE_EMPLOYEE = "SELECT * FROM EMPLOYEE WHERE ID = ?;";
+    public static final String DROP_TABLE_EMPLOYEE = "DROP TABLE EMPLOYEE;";
 }

@@ -1,6 +1,7 @@
 package com.corey.controller;
 
 import com.corey.dao.DepartmentTable;
+import com.corey.dao.EmployeeTable;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.annotation.WebServlet;
@@ -17,10 +18,12 @@ public class IndexServlet extends HttpServlet {
         try {
             req.setCharacterEncoding("UTF-8");
             DepartmentTable.createTable();
+            EmployeeTable.createEmployeeTable();
             resp.sendRedirect("/list");
         } catch (IOException e) {
             log.error("Error: {}", e);
             DepartmentTable.dropTable();
+            EmployeeTable.dropEmployeeTable();
         }
     }
 }

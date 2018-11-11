@@ -17,4 +17,12 @@ public class Employee {
     private String mail;
     private Date dateOfCreation;
     private Long departmentId;
+
+    public Employee(String firstName, String lastName, int age, String mail, Long departmentId) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.mail = mail;
+        this.departmentId = departmentId;
+    }
 }

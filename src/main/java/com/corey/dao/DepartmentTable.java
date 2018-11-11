@@ -16,7 +16,7 @@ public final class DepartmentTable {
     }
 
     //Creates a table in a database.
-    public static int createTable() {
+    public static synchronized int createTable() {
         try (PreparedStatement prStatement = ConnectionDB.getConnection()
                 .prepareStatement(UtilQueryDepartment.CREATE_TABLE_DEPARTMENT)) {
             final int result = prStatement.executeUpdate();
@@ -31,7 +31,7 @@ public final class DepartmentTable {
     }
 
     //Insert table
-    public static boolean insertIntoTable(Department department) {
+    public static synchronized boolean insertIntoTable(Department department) {
         try (PreparedStatement prStatement = ConnectionDB.getConnection()
                 .prepareStatement(UtilQueryDepartment.INSERT_DEPARTMENT)) {
             prStatement.setString(1, department.getName());
@@ -48,7 +48,7 @@ public final class DepartmentTable {
     }
 
     //Update
-    public static int updateToTable(Department department) {
+    public static synchronized int updateToTable(Department department) {
         try (PreparedStatement prStatement = ConnectionDB.getConnection()
                 .prepareStatement(UtilQueryDepartment.UPDATE_DEPARTMENT)) {
             prStatement.setString(1, department.getName());
@@ -63,7 +63,7 @@ public final class DepartmentTable {
     }
 
     //Delete record from table
-    public static boolean deleteFromTable(Department department) {
+    public static synchronized boolean deleteFromTable(Department department) {
         try (PreparedStatement prStatement = ConnectionDB.getConnection()
                 .prepareStatement(UtilQueryDepartment.DELETE_DEPARTMENT)) {
             prStatement.setLong(1, department.getId());
@@ -80,7 +80,7 @@ public final class DepartmentTable {
     }
 
     //Select records from table
-    public static List<Department> selectFromTable() {
+    public static synchronized List<Department> selectFromTable() {
         List<Department> departments = new ArrayList<>();
         try (final PreparedStatement prStatement = ConnectionDB.getConnection()
                 .prepareStatement(UtilQueryDepartment.SELECT_DEPARTMENT);
@@ -99,7 +99,7 @@ public final class DepartmentTable {
         return departments;
     }
 
-    public static Department selectOne(final long id) {
+    public static synchronized Department selectOne(final long id) {
         try (PreparedStatement pr = ConnectionDB.getConnection()
                 .prepareStatement(UtilQueryDepartment.SELECT_ONE_DEPARTMENT)) {
             Department department = new Department();
@@ -113,13 +113,13 @@ public final class DepartmentTable {
                 return department;
             }
         } catch (SQLException e) {
-            log.error("Error Select one product: {}", e.getMessage());
+            log.error("Error Select one department: {}", e.getMessage());
         }
         return null;
     }
 
     //Drop from table
-    public static int dropTable() {
+    public static synchronized int dropTable() {
         try (PreparedStatement prStatement = ConnectionDB.getConnection()
                 .prepareStatement(UtilQueryDepartment.DROP_TABLE_DEPARTMENT)) {
             // execute delete SQL prepared statement
